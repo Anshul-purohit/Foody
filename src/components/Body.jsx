@@ -24,8 +24,8 @@ const Body = () => {
         const json = await data.json();
         console.log(json)
         // Optional Chaining
-        setResList(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        setUpdateResList(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setUpdateResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     }
 
     const onlineStatus = useOnlineStatus();
@@ -34,7 +34,10 @@ const Body = () => {
 
     const {loggedInUser,setUserName} = useContext(UserContext);
 
-    return resList.length === 0 ? <Shimmer/> : (
+    if(!resList)
+        return <Shimmer /> 
+
+    return (
         <div className="body">
             <div className="filter flex">
                 <div className="search m-4 p-4">
